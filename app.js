@@ -1,4 +1,3 @@
-
 // flex-container column for all elements
 const flex = d3
 	.select('body')
@@ -10,7 +9,7 @@ const flex = d3
 const header = d3
 	.select('#flex-container')
 	.append('h1')
-	.text('Crypto')
+	.text('Stocks')
 
 // navbar
 const navbar = d3
@@ -20,30 +19,30 @@ const navbar = d3
 	.attr('id', 'navbar')
 
 // button to navigate to stock data
-const navButtonWrapperStocks = d3
-	.select('#navbar')
-	.append('div')
-	.attr('class', 'nav-button-wrapper')
-	.attr('id', 'nav-button-wrapper-stocks')
-const navButtonStocks = d3
-	.select('#nav-button-wrapper-stocks')
-	.append('button')
-	.attr('class', 'nav-button')
-	.attr('id', 'nav-button-stocks')
-	.text('Stocks!!')
+// const navButtonWrapperStocks = d3
+// 	.select('#navbar')
+// 	.append('div')
+// 	.attr('class', 'nav-button-wrapper')
+// 	.attr('id', 'nav-button-wrapper-stocks')
+// const navButtonStocks = d3
+// 	.select('#nav-button-wrapper-stocks')
+// 	.append('button')
+// 	.attr('class', 'nav-button')
+// 	.attr('id', 'nav-button-stocks')
+// 	.text('Stocks!!')
 
 // button to navigate to crypto data
-const navButtonWrapperCrypto = d3
-	.select('#navbar')
-	.append('div')
-	.attr('class', 'nav-button-wrapper')
-	.attr('id', 'nav-button-wrapper-crypto')
-const navButtonCrypto = d3
-	.select('#nav-button-wrapper-crypto')
-	.append('button')
-	.attr('class', 'nav-button')
-	.attr('id', 'nav-button-crypto')
-	.text('Crypto!!')
+// const navButtonWrapperCrypto = d3
+// 	.select('#navbar')
+// 	.append('div')
+// 	.attr('class', 'nav-button-wrapper')
+// 	.attr('id', 'nav-button-wrapper-crypto')
+// const navButtonCrypto = d3
+// 	.select('#nav-button-wrapper-crypto')
+// 	.append('button')
+// 	.attr('class', 'nav-button')
+// 	.attr('id', 'nav-button-crypto')
+// 	.text('Crypto!!')
 
 
 // filter-container
@@ -69,6 +68,77 @@ const startDatePicker = d3
 	.attr('id', 'start-date-picker')
 	.attr('type', 'date')
 	.attr('value', `${formatDate(new Date())}`)
+
+const stockPicker = d3
+	.select('#navbar')
+	.append('form')
+	.attr('class', 'stock-picker')
+	.attr('id', 'stock-picker')
+
+const stockPickerSelect = d3
+	.select('#stock-picker')
+	.append('select')
+	.attr('id', 'stock-picker-list')
+
+const stockPickerOptionTSLA = d3
+	.select('#stock-picker-list')
+	.append('option')
+	.attr('value', 0)
+	.text('TSLA')
+
+const stockPickerOptionGOOGL = d3
+	.select('#stock-picker-list')
+	.append('option')
+	.attr('value', 1)
+	.text('GOOGL')
+
+const stockPickerOptionFB = d3
+	.select('#stock-picker-list')
+	.append('option')
+	.attr('value', 2)
+	.text('FB')
+
+const stockPickerOptionEOG = d3
+	.select('#stock-picker-list')
+	.append('option')
+	.attr('value', 3)
+	.text('EOG')
+
+const stockPickerOptionAAPL = d3
+	.select('#stock-picker-list')
+	.append('option')
+	.attr('value', 4)
+	.text('AAPL')
+
+const stockPickerOptionAMZN = d3
+	.select('#stock-picker-list')
+	.append('option')
+	.attr('value', 5)
+	.text('AMZN')
+
+const stockPickerOptionCOF = d3
+	.select('#stock-picker-list')
+	.append('option')
+	.attr('value', 6)
+	.text('COF')
+
+const stockPickerOptionNVDA = d3
+	.select('#stock-picker-list')
+	.append('option')
+	.attr('value', 7)
+	.text('NVDA')
+
+const stockPickerOptionJNJ = d3
+	.select('#stock-picker-list')
+	.append('option')
+	.attr('value', 8)
+	.text('JNJ')
+
+const stockPickerOptionMU = d3
+	.select('#stock-picker-list')
+	.append('option')
+	.attr('value', 9)
+	.text('MU')
 
 const endDatePickerWrapper = d3
 	.select('#filter-container')
@@ -123,34 +193,25 @@ var loadData = fetch('http://localhost:4000/chart')
 		}))
 	});
 
-// var loadData = fetch('http://localhost:4000/crypto')
+// var loadData = fetch('http://localhost:4000/stocks')
 // 	.then(response => response.json())
 // 	.then(data => {
 // 		const margin = { top: 50, right: 50, bottom: 50, left: 50 };
 // 		const width = window.innerWidth - margin.left - margin.right;
 // 		const height = window.innerHeight - margin.top - margin.bottom;
 //
-// 		let coinData = [];
+// 		let stockData = [];
+// 		// console.log(data[0]);
 //
-// 		for (let i = 0; i < 10; i++) {
-//
-// 			for (let j = 0; j < 365; j++){
-// 				let tempDate = new Date(data[i]['time'].split('-')[0] + '-' + data[i]['time'].split('-')[1] + '-' + data[i]['time'].split('-')[2]);
-// 				let dateOffset = (24*60*60*1000) * (365 - i); //5 days
-// 				tempDate = new Date(tempDate - dateOffset);
-// 				console.log(tempDate);
-//
-// 				let coinDataFrame = {
-// 					date: tempDate,
-// 					test: `${(365-j)} days ago`,
-// 					coin: data[i]['coin'],
-// 					priceHistory: data[i]['priceHistory'][j]
-// 				};
-// 				coinData.push(coinDataFrame);
-// 			}
+// 		for (let i = 0; i < data[0].priceList.length; i++) {
+// 			console.log(data[0].priceList[i][1]);
+// 			stockData.push({
+// 				date: new Date(data[0].priceList[i][0]),
+// 				price: data[0].priceList[i][1]
+// 			});
 // 		}
 //
-// 		return coinData;
+// 		return stockData;
 // 	});
 
 // responsivefy method
@@ -411,7 +472,7 @@ const initialiseChart = data => {
 				if (d === 'date') {
 				return `${d}: ${currentData[d].toLocaleDateString()}`;
 			} else if ( d === 'high' || d === 'low' || d === 'close' || d === 'price') {
-				return `price: ${currentData[d].toFixed(2)}`;
+				return `${d}: $${parseFloat(currentData[d]).toFixed(2)}`;
 			} else if ( d === 'volume') {
 				return `upvotes: ${Math.round(currentData[d]/1000)}`;
 			} else if ( d === 'open') {

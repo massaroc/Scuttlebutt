@@ -68,7 +68,7 @@
 	.filter-container {
 		height: 10%;
 		min-height: 30px;
-		width: 100%;
+		width: 75%;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-around;
@@ -100,6 +100,15 @@
 		border-radius: 5px;
 		background-color: white;
 		box-shadow: 0px 50px 100px 0px rgba(0,0,102,0.1);
+		text-align: center;
+	}
+
+	.stock-picker {
+		width: 40%;
+		text-align: center;
+	}
+	.stock-picker-select {
+		width: 100%;
 		text-align: center;
 	}
 
